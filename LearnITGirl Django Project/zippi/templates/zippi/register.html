@@ -1,4 +1,4 @@
-{% extends 'zippi/base.html' %}
+{% extends 'zippi/base_start.html' %}
 
 {% block content %}
 
@@ -6,11 +6,11 @@
 
         {% if registered %}
         Zippi says: <strong>thank you for registering!</strong>
-        <a href="/zippi/">Return to the homepage.</a><br />
+        <a href="/">Return to the homepage.</a><br />
         {% else %}
         Zippi says: <strong>register here!</strong><br />
 
-        <form id="user_form" method="post" action="/zippi/register/"
+        <form id="user_form" method="post" action="/register/"
                 enctype="multipart/form-data">
 
             {% csrf_token %}
@@ -23,4 +23,4 @@
         {% endif %}
    
 
-{% endblock content %}        
+{% endblock %}        

@@ -1,12 +1,18 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Pin, UserProfile
+from .models import Pin, UserProfile, Map
+from django.shortcuts import get_object_or_404, redirect
 
 
 class PinForm(forms.ModelForm):
+    
     class Meta:
         model = Pin
-        fields = ('pin_latitude', 'pin_longitude', 'category', 'comment',)
+        fields = ('category', 'comment',)
+
+class PinSearchForm(forms.Form):
+    address = forms.CharField(label = 'Enter Pin Location', max_length=255)
+
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -20,3 +26,13 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('picture',)
 
+class MapCenterForm(forms.ModelForm):
+    class Meta:
+        model = Map
+        fields = ('map_title',)
+        labels = {'map_title': ('Enter a Title for your Trip'), }
+
+    country = forms.CharField(label = 'Enter the country you are travelling to', max_length=255)
+
+
+    
